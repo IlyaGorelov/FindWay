@@ -15,17 +15,19 @@ public class Options : MonoBehaviour
             else Close();
         }
 
-
         if (options.activeSelf)
         {
             optionsActivated = true;
             States.isPaused = true;
         }
-        else { optionsActivated = false;
+        else
+        {
+            optionsActivated = false;
             States.isPaused = false;
         }
     }
 
     public void Close() => options.SetActive(false);
- 
+
+    //On FirstPersonController
 }

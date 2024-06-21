@@ -6,7 +6,6 @@ public class ActivateSelectInput : MonoBehaviour
 {
     [SerializeField] GameObject gameObject;
 
-
     private void Update()
     {
         if (States.isSelectMode)
@@ -18,4 +17,6 @@ public class ActivateSelectInput : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+    //On GameManager
+    //Activate SelectModeInput
 }

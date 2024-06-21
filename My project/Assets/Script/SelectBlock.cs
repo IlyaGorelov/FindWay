@@ -5,10 +5,10 @@ using UnityEngine;
 public class SelectBlock : MonoBehaviour
 {
     [SerializeField] private GameObject camera;
-
-    [SerializeField] LayerMask block;
-    private GameObject SelectInput;
-    private PositionChange positionChange;
+    [SerializeField] private LayerMask block;
+    [SerializeField] private LayerMask arrow;
+    //   private GameObject SelectInput;
+    private ActivateEditMode positionChange;
 
 
     void Update()
@@ -20,30 +20,36 @@ public class SelectBlock : MonoBehaviour
 
         }
         if (States.isSelectMode) { 
-            SelectInput = GameObject.Find("SelectInput");
-            Select(); }
+          //  SelectInput = GameObject.Find("SelectInput");
+            Select(); 
+        }
     }
 
    private void Select()
     {
+        bool canDoIt = true;
         Vector3 mouse = Input.mousePosition;
-
         Ray ray = Camera.main.ScreenPointToRay(mouse);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit,10, block))
+
+        canDoIt = !Physics.Raycast(ray, out RaycastHit tempHit, 10, arrow);
+        
+        if (Physics.Raycast(ray, out RaycastHit hit, 10, block))
         { 
             Transform hitted = hit.transform;
-                print(hitted.gameObject.name);
-            if (Input.GetMouseButtonDown(0))
-            {
-                try
+            
+                if (Input.GetMouseButtonDown(0) && canDoIt)
                 {
-                    positionChange.Deselect();
+                    try
+                    {
+                        positionChange.Deselect();
+                    }//Deselect previous object with positionChange
+                    catch { }
+                    positionChange = hitted.GetComponent<ActivateEditMode>();
+                    positionChange.BecomeSelected();
                 }
-                catch { }
-                positionChange= hitted.GetComponent<PositionChange>();
-                positionChange.BecomeSelected();
-            }
+           }
         }
     }
-}
+
+    //On FirstPersonController
+

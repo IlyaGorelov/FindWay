@@ -17,7 +17,7 @@ public class LoadModel : MonoBehaviour
     {
         if (!isFirstScene)
             OpenExplorer();
-        if (PlayerPrefs.HasKey("path") && loaded[0]==null)
+        if (PlayerPrefs.HasKey("path") && loaded[0] == null)
         {
             path = PlayerPrefs.GetString("path");
             OBJLoader ol = new OBJLoader();
@@ -34,20 +34,19 @@ public class LoadModel : MonoBehaviour
             path = EditorUtility.OpenFilePanel("Choose your model", "", "obj");
             PlayerPrefs.SetString("path", path);
         }
-        if(PlayerPrefs.HasKey("path"))
+        if (PlayerPrefs.HasKey("path"))
         {
-        path = PlayerPrefs.GetString("path");
-
+            path = PlayerPrefs.GetString("path");
         }
         LoadMesh(ol, loaded);
     }
 
-   private void LoadMesh(OBJLoader ol, GameObject[] loaded)
+    private void LoadMesh(OBJLoader ol, GameObject[] loaded)
     {
         meshFilter = ol.Load(path);
         objectName = meshFilter.name;
         loaded[0] = meshFilter;
-        meshFilter.transform.position = isFirstScene ? new Vector3(18, -40, 360): new Vector3(0, -10, 200);
+        meshFilter.transform.position = isFirstScene ? new Vector3(18, -40, 360) : new Vector3(0, -10, 200);
         meshFilter.transform.localScale = new Vector3(8, 8, 8);
         Transform[] children = meshFilter.GetComponentsInChildren<Transform>();
         foreach (var child in children)

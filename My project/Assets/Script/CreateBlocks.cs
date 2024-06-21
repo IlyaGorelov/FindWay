@@ -27,8 +27,7 @@ public class CreateBlocks : MonoBehaviour
         Ray ray = new(transform.position, camera.transform.forward);
         Debug.DrawRay(transform.position, camera.transform.forward, Color.yellow);
 
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             Vector3 spawn = hit.point;
             if (Input.GetMouseButtonDown(0))
@@ -37,7 +36,7 @@ public class CreateBlocks : MonoBehaviour
                 blocks.Add(buildedBlock);
             }
         }
-    }
+    }//Spawn block on view direction
 
     private void DeleteZ()
     {
@@ -54,5 +53,7 @@ public class CreateBlocks : MonoBehaviour
                 print("Error");
             }
         }
-    }
+    }//Delete previous block with Z-key
+
+    //On FirstPersonController
 }
