@@ -6,18 +6,17 @@ public class CreateBlocks : MonoBehaviour
 {
     [SerializeField] private GameObject block;
     [SerializeField] GameObject camera;
-    private bool isBuildMode = false;
-    private List<GameObject> blocks = new List<GameObject>();
+    public List<GameObject> blocks = new List<GameObject>();
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (isBuildMode == false) isBuildMode = true;
-            else isBuildMode = false;
+            if (States.isBuildMode == false) States.isBuildMode = true;
+            else States.isBuildMode = false;
         }
 
-        if (isBuildMode) Spawn();
+        if (States.isBuildMode) Spawn();
 
         DeleteZ();
     }

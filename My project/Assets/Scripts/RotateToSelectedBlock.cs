@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class RotateToSelectedBlock : MonoBehaviour
 {
-    public GameObject block=null;
+    public GameObject selected=null;
 
     private void Update()
     {
-        if (block != null && States.isSelectMode)
+        if (selected != null && States.isSelectMode)
         {
-            transform.LookAt(block.transform.position);
+            transform.LookAt(selected.transform.position);
         }
     }
+    //On FirstPersonController
 }

@@ -42,11 +42,11 @@ public class PositionChange : MonoBehaviour
         {
             transform.position -= new Vector3(0, 0, changer);
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Space))
         {
             transform.position += new Vector3(0, changer, 0);
         }
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.C))
         {
             transform.position -= new Vector3(0, changer, 0);
         }
