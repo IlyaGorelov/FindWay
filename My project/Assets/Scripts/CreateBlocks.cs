@@ -44,7 +44,7 @@ public class CreateBlocks : MonoBehaviour
         {
             try
             {
-                blocks[blocks.Count - 1].SetActive(false);
+                blocks[^1].SetActive(false);
                 blocks.Remove(blocks[blocks.Count - 1]);
             }
             catch

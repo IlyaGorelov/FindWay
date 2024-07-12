@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SelectBlock : MonoBehaviour
@@ -15,11 +13,11 @@ public class SelectBlock : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (!States.isSelectMode) States.isSelectMode = true;
-            else States.isSelectMode = false;
+            if (!States.isEditMode) States.isEditMode = true;
+            else States.isEditMode = false;
 
         }
-        if (States.isSelectMode)
+        if (States.isEditMode)
         {
             //  SelectInput = GameObject.Find("SelectInput");
             Select();
@@ -28,16 +26,13 @@ public class SelectBlock : MonoBehaviour
 
     private void Select()
     {
-        bool canDoIt = true;
         Vector3 mouse = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(mouse);
-
-        canDoIt = !Physics.Raycast(ray, out RaycastHit tempHit, 10, arrow);
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100, block))
         {
             Transform hitted = hit.transform;
-            if (Input.GetMouseButtonDown(0) && canDoIt)
+            if (Input.GetMouseButtonDown(0))
             {
                 try
                 {

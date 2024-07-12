@@ -11,6 +11,10 @@ public class ArrowsRotation : MonoBehaviour
         {
             arrowsImage.SetActive(true);
             arrowsObject.transform.rotation=Quaternion.Inverse(Camera.main.transform.rotation);
+            if(States.mode == States.EditModeState.Rotate)
+            {
+              arrowsObject.transform.rotation *= States.selectedBlock.transform.rotation;
+            }
         }
         else
         {

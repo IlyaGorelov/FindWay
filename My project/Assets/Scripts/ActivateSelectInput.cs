@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ActivateSelectInput : MonoBehaviour
@@ -8,7 +6,7 @@ public class ActivateSelectInput : MonoBehaviour
 
     private void Update()
     {
-        if (States.isSelectMode)
+        if (States.isEditMode)
         {
             gameObject.SetActive(true);
         }

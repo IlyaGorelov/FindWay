@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class AllowToChangeBlockPos : MonoBehaviour
+public class AllowToChangeBlockCoords : MonoBehaviour
 {
     [SerializeField] BlockCoordsToInputFields script;
 

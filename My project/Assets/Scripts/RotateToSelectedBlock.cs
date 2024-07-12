@@ -8,7 +8,7 @@ public class RotateToSelectedBlock : MonoBehaviour
 
     private void Update()
     {
-        if (selected != null && States.isSelectMode)
+        if (selected != null && States.isEditMode)
         {
             transform.LookAt(selected.transform.position);
         }

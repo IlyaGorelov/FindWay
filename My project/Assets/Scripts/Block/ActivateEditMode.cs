@@ -35,7 +35,7 @@ public class ActivateEditMode : MonoBehaviour
 
     private void Update()
     {
-        if (!States.isSelectMode)
+        if (!States.isEditMode)
         {
             Deselect();
         }
@@ -44,7 +44,7 @@ public class ActivateEditMode : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (States.isSelectMode)
+        if (States.isEditMode)
             inline.SetActive(true);
         
     }

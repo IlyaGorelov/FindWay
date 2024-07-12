@@ -203,17 +203,17 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
-        if(States.isSelectMode || States.isPaused)
+        if(States.isEditMode || States.isPaused)
         {
             rb.velocity = new Vector3(0,0,0);
         }
 
-        if (States.isPaused||States.isSelectMode) Cursor.lockState = CursorLockMode.Confined;
+        if (States.isPaused||States.isEditMode) Cursor.lockState = CursorLockMode.Confined;
         else  Cursor.lockState = CursorLockMode.Locked;
 
         #region Camera
 
-        if (States.isPaused || States.isSelectMode)
+        if (States.isPaused || States.isEditMode)
         {
             cameraLocked = true;
         }
@@ -341,7 +341,7 @@ public class FirstPersonController : MonoBehaviour
         #region Jump
 
         // Gets input and calls jump method
-        if(Input.GetKey(jumpKey) && !States.isPaused && !States.isSelectMode)
+        if(Input.GetKey(jumpKey) && !States.isPaused && !States.isEditMode)
         {
             Jump();
         }
@@ -352,7 +352,7 @@ public class FirstPersonController : MonoBehaviour
 
 
 
-        if (Input.GetKey(crouchKey) && holdToCrouch && !States.isPaused && !States.isSelectMode)
+        if (Input.GetKey(crouchKey) && holdToCrouch && !States.isPaused && !States.isEditMode)
         {
             Crouch();
         }
@@ -370,7 +370,7 @@ public class FirstPersonController : MonoBehaviour
     {
         #region Movement
 
-        if (playerCanMove && !States.isPaused && !States.isSelectMode)
+        if (playerCanMove && !States.isPaused && !States.isEditMode)
         {
             // Calculate how fast we should be moving
             Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));

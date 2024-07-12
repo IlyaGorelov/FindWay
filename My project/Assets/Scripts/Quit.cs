@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Menu : MonoBehaviour
+public class Quit : MonoBehaviour
 {
     public void QuitApp()
     {
