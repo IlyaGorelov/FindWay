@@ -4,8 +4,6 @@ public class SelectBlock : MonoBehaviour
 {
     [SerializeField] private GameObject camera;
     [SerializeField] private LayerMask block;
-    [SerializeField] private LayerMask arrow;
-    //   private GameObject SelectInput;
     private ActivateEditMode positionChange;
 
 
@@ -15,11 +13,9 @@ public class SelectBlock : MonoBehaviour
         {
             if (!States.isEditMode) States.isEditMode = true;
             else States.isEditMode = false;
-
         }
         if (States.isEditMode)
         {
-            //  SelectInput = GameObject.Find("SelectInput");
             Select();
         }
     }

@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class ActivateSelectInput : MonoBehaviour
 {
-    [SerializeField] GameObject gameObject;
+    [SerializeField] GameObject selectInputObject;
 
     private void Update()
     {
         if (States.isEditMode)
         {
-            gameObject.SetActive(true);
+            selectInputObject.SetActive(true);
         }
         else
         {
-            gameObject.SetActive(false);
+            selectInputObject.SetActive(false);
         }
     }
     //On GameManager

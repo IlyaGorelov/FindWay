@@ -1,21 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CreateBlocks : MonoBehaviour
 {
-    [SerializeField] private GameObject block;
+    public GameObject block;
     [SerializeField] GameObject camera;
     public List<GameObject> blocks = new List<GameObject>();
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (States.isBuildMode == false) States.isBuildMode = true;
-            else States.isBuildMode = false;
-        }
-
         if (States.isBuildMode) Spawn();
 
         DeleteZ();
@@ -31,7 +24,7 @@ public class CreateBlocks : MonoBehaviour
             Vector3 spawn = hit.point;
             if (Input.GetMouseButtonDown(0))
             {
-                var buildedBlock = Instantiate(block, spawn, Quaternion.identity);
+                var buildedBlock = Instantiate(block, spawn , block.transform.rotation);
                 blocks.Add(buildedBlock);
             }
         }
