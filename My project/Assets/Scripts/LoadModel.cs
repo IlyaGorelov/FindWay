@@ -45,12 +45,12 @@ public class LoadModel : MonoBehaviour
         objectName = meshFilter.name;
         loaded[0] = meshFilter;
         meshFilter.transform.position = isFirstScene ? new Vector3(18, -40, 360) : new Vector3(0, -10, 200);
-        meshFilter.transform.localScale = new Vector3(8, 8, 8);
+        meshFilter.transform.localScale = new Vector3(-8, 8, 8);
         Transform[] children = meshFilter.GetComponentsInChildren<Transform>();
         foreach (var child in children)
         {
             child.AddComponent<MeshCollider>();
-            child.GetComponent<MeshCollider>().convex = true;
+            child.GetComponent<MeshCollider>().convex = false;
         }
     }
 }

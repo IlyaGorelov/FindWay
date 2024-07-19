@@ -24,7 +24,7 @@ public class StartingMenuButtons : MonoBehaviour
         float x = temp.transform.localScale.x;
         float y = temp.transform.localScale.y;
         float z = temp.transform.localScale.z;
-        temp.transform.localScale = new Vector3(x + changer, y + changer, z + changer);
+        temp.transform.localScale = new Vector3(x - changer, y + changer, z + changer);
     }
 
     public void GoToScene(int a)
