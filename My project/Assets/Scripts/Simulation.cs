@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Simulation : MonoBehaviour
@@ -16,6 +17,8 @@ public class Simulation : MonoBehaviour
             if (block.layer == 7)
             {
                 var newAgent = Instantiate(agentPrefab, block.transform.position, Quaternion.identity);
+                AgentInfo info = newAgent.GetComponent<AgentInfo>();
+                info.startPoint = block.transform;
                 agents.Add(newAgent);
             }
             if (block.layer == 8)
@@ -26,7 +29,7 @@ public class Simulation : MonoBehaviour
 
         foreach (var agent in agents)
         {
-            Agent agent1 = agent.GetComponent<Agent>();
+            AgentInfo agent1 = agent.GetComponent<AgentInfo>();
             agent1.finishPoint = finishBeforePrefab;
         }
     }

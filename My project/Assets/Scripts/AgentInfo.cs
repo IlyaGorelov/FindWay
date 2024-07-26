@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Agent : MonoBehaviour
+public class AgentInfo : MonoBehaviour
 {
     public Transform startPoint;
     public Transform finishPoint;

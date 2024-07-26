@@ -1,9 +1,8 @@
 using UnityEngine;
-using MLAgents;
 
-public class FinderAcademy : MonoBehaviour
+public class Goal : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
