@@ -10,7 +10,7 @@ public class ActivateEditMode : MonoBehaviour
     {
         isSelected = true;
         GameObject go = GameObject.Find("FirstPersonController");
-        RotateToSelectedBlock rotateTo = go.GetComponent<RotateToSelectedBlock>();
+        RotateToSelectedBlock rotateTo = go.GetComponentInChildren<RotateToSelectedBlock>();
         rotateTo.selected = gameObject;
         inline2.SetActive(true);
         States.selectedBlock = gameObject;
@@ -19,7 +19,7 @@ public class ActivateEditMode : MonoBehaviour
     {
         isSelected = false;
         GameObject go = GameObject.Find("FirstPersonController");
-        RotateToSelectedBlock rotateTo = go.GetComponent<RotateToSelectedBlock>();
+        RotateToSelectedBlock rotateTo = go.GetComponentInChildren<RotateToSelectedBlock>();
         rotateTo.selected = null;
         inline2.SetActive(false);
     }
