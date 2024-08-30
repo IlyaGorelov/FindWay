@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ActivateEditMode : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class ActivateEditMode : MonoBehaviour
 
     private void Update()
     {
-        if (!States.isEditMode)
+        if (!States.isEditMode && SceneManager.GetActiveScene().buildIndex==1)
         {
             Deselect();
         }
