@@ -2,6 +2,9 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using Google.Protobuf.WellKnownTypes;
+using System.Linq;
+using System;
 
 public class MoveToTargetAgent : Agent
 {
@@ -18,6 +21,8 @@ public class MoveToTargetAgent : Agent
         do
         {
             //finish = agentInfo.finishPoint;
+            learningManager.DeactivateFinishes();
+            learningManager.finishes[idOfFin].SetActive(true);
             finish = learningManager.finishes[idOfFin].transform;
             start = agentInfo.startPoint;
         } while (agentInfo == null);
@@ -58,8 +63,10 @@ public class MoveToTargetAgent : Agent
         {
             SetReward(5f);
             print("success");
-            finish.position = new Vector3(100, 100, 1000);
+            //finish.position = new Vector3(100, 100, 1000);
+            learningManager.finishes[idOfFin].SetActive(false);
             idOfFin += 1;
+            learningManager.finishes[idOfFin].SetActive(true);
             finish = learningManager.finishes[idOfFin].transform;
             EndEpisode();
         }
@@ -71,13 +78,12 @@ public class MoveToTargetAgent : Agent
         {
             SetReward(-2f);
             EndEpisode();
-            print("ground");
+            print("not grounded");
         }
-        if (check.isStacked)
+        if (check.isStucked())
         {
             SetReward(-2f);
             print("stuck");
-            check.isStacked = false;
             EndEpisode();
         }
     }
@@ -87,4 +93,6 @@ public class MoveToTargetAgent : Agent
         bool hit = Physics.Raycast(transform.position, -transform.up, 200f);
         return hit;
     }
+
+    
 }
