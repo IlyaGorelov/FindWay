@@ -12,11 +12,10 @@ GameObject:
   - component: {fileID: 5689760646053465132}
   - component: {fileID: 6689505735086387162}
   - component: {fileID: 8715097996665667242}
-  - component: {fileID: 2344896311264259577}
   - component: {fileID: 4288481067804055717}
   - component: {fileID: 8787547449293941050}
-  - component: {fileID: 8197833152712512901}
   - component: {fileID: 4605092085079954731}
+  - component: {fileID: 7194162982760332537}
   m_Layer: 6
   m_Name: Agent
   m_TagString: Untagged
@@ -114,36 +113,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2344896311264259577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4089064093299667991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BrainParameters:
-    VectorObservationSize: 6
-    NumStackedVectorObservations: 1
-    m_ActionSpec:
-      m_NumContinuousActions: 2
-      BranchSizes: 
-    VectorActionSize: 02000000
-    VectorActionDescriptions: []
-    VectorActionSpaceType: 1
-    hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
-  m_InferenceDevice: 0
-  m_BehaviorType: 0
-  m_BehaviorName: Move To Target
-  TeamId: 0
-  m_UseChildSensors: 1
-  m_UseChildActuators: 1
-  m_ObservableAttributeHandling: 0
 --- !u!114 &4288481067804055717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,11 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5788bb952f60143b3d24baf1a579e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
   learningManager: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  hitPoint: {fileID: 0}
 --- !u!114 &8787547449293941050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,20 +144,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 0}
   finishPoint: {fileID: 0}
---- !u!114 &8197833152712512901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4089064093299667991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DecisionPeriod: 5
-  TakeActionsBetweenDecisions: 1
 --- !u!54 &4605092085079954731
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -216,6 +171,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &7194162982760332537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4089064093299667991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5680e53134b54664ab719c3301ab5955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentInfo: {fileID: 8787547449293941050}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &5187686094006203112
 GameObject:
   m_ObjectHideFlags: 0

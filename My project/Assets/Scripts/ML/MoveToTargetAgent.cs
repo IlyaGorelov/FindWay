@@ -1,18 +1,13 @@
 using UnityEngine;
-using Unity.MLAgents;
-using Unity.MLAgents.Actuators;
-using Unity.MLAgents.Sensors;
-using Google.Protobuf.WellKnownTypes;
-using System.Linq;
-using System;
-
-public class MoveToTargetAgent : Agent
+public class MoveToTargetAgent : MonoBehaviour
 {
     private Transform finish;
     private Transform start;
     private CheckOnStuck check;
     [SerializeField] LearningManager learningManager;
     int idOfFin = 0;
+    [SerializeField] LayerMask layerMask;
+    [SerializeField] GameObject hitPoint;
 
     private void Start()
     {
@@ -26,73 +21,24 @@ public class MoveToTargetAgent : Agent
             finish = learningManager.finishes[idOfFin].transform;
             start = agentInfo.startPoint;
         } while (agentInfo == null);
+        FindWay();
     }
 
-    public override void OnEpisodeBegin()
+    private void FindWay()
     {
-        transform.localPosition = start.localPosition;
-        transform.localPosition += new Vector3(0, 2, 0);
-        print("ep_begin");
+        CreateHits();
     }
 
-    public override void CollectObservations(VectorSensor sensor)
+    private void CreateHits()
     {
-        sensor.AddObservation(transform.localPosition);
-        sensor.AddObservation(finish.localPosition);
+        Ray rayForward = new(transform.position, transform.forward);
+        Ray rayBack = new(transform.position, -transform.forward);
+        Ray rayRight = new(transform.position, transform.right);
+        Ray rayLeft = new(transform.position, -transform.right);
+        Ray[] rays = { rayBack, rayForward, rayRight, rayLeft };
+
+        foreach (Ray ray in rays)
+            if (Physics.Raycast(ray, out RaycastHit hit, 200f, layerMask))
+                Instantiate(hitPoint, hit.point, Quaternion.identity);
     }
-
-    public override void OnActionReceived(ActionBuffers actions)
-    {
-        float moveX = actions.ContinuousActions[0];
-        float moveZ = actions.ContinuousActions[1];
-        float speed = 5f;
-
-        transform.localPosition += new Vector3(moveX, 0, moveZ) * Time.deltaTime * speed;
-    }
-
-    public override void Heuristic(in ActionBuffers actionsOut)
-    {
-        ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
-        continuousActions[0] = Input.GetAxisRaw("Horizontal");
-        continuousActions[1] = Input.GetAxisRaw("Vertical");
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out Goal goal))
-        {
-            SetReward(5f);
-            print("success");
-            //finish.position = new Vector3(100, 100, 1000);
-            learningManager.finishes[idOfFin].SetActive(false);
-            idOfFin += 1;
-            learningManager.finishes[idOfFin].SetActive(true);
-            finish = learningManager.finishes[idOfFin].transform;
-            EndEpisode();
-        }
-    }
-
-    private void Update()
-    {
-        if (!isGrounded())
-        {
-            SetReward(-2f);
-            EndEpisode();
-            print("not grounded");
-        }
-        if (check.isStucked())
-        {
-            SetReward(-2f);
-            print("stuck");
-            EndEpisode();
-        }
-    }
-
-    private bool isGrounded()
-    {
-        bool hit = Physics.Raycast(transform.position, -transform.up, 200f);
-        return hit;
-    }
-
-    
 }
