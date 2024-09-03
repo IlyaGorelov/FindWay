@@ -3,6 +3,12 @@ using UnityEngine;
 public class AgentInfo : MonoBehaviour
 {
     public Transform startPoint;
-    public Transform finishPoint;
+    public static Transform finishPoint;
+    [SerializeField] Transform testFinish;
+
+    private void Awake()
+    {
+        finishPoint = testFinish;
+    }
 
 }

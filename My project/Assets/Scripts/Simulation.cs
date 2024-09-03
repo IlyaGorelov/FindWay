@@ -30,7 +30,7 @@ public class Simulation : MonoBehaviour
         foreach (var agent in agents)
         {
             AgentInfo agent1 = agent.GetComponent<AgentInfo>();
-            agent1.finishPoint = finishBeforePrefab;
+            AgentInfo.finishPoint = finishBeforePrefab;
         }
     }
 }
